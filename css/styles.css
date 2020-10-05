@@ -1,0 +1,117 @@
+/* Base styles */
+html {
+    font-family: Raleway;
+    color: #fafafa;
+}
+
+body {
+    background-color:#3a3f44;
+    background: #3a3f44;
+    background: linear-gradient(to bottom right, black, #3a3f44);
+    border: 2px solid white;
+}
+
+header {
+    padding: 0em 1em 2em;
+    border: 2px solid blue;
+}
+
+/* Typeography styles */
+h1 {
+    text-align: center;
+    text-shadow: 5px 5px black;
+    font-weight: bold;
+    /* margin: 2em; */
+    font-size: 4em;
+}
+
+h2 {
+    text-align: center;
+    font-weight: normal;
+    margin: 0;
+    font-size: 3em;
+}
+
+p {
+    margin: 10px;
+    color: beige;
+    font-family: 'Palanquin Dark';
+
+}
+
+a, a:visited, a:active {
+    color: inherit;
+}
+
+a:hover {
+    /* color: orange; */
+    text-decoration: underline;
+}
+
+/* Layout styles */
+
+main {
+    margin: 0em 1em 10em;
+}
+
+
+/* TBD this may not be used */
+.main-hero {
+    min-height: 40vh;
+    padding-top: 3em;
+}
+
+.NavbarMenu ul {
+    text-align: center;
+    font-size: 2em;
+}
+
+.NavbarMenu li {
+    display: inline-block;
+    padding: 1em;
+    border: 2px solid purple
+
+    /* TBD decide block */
+    /* display: block; */
+}
+
+/* These are engaged by JS? TBD */
+.NavbarMenu .MenuLink {
+    font-weight: bolder;
+    text-decoration: none;
+    color: white;
+}
+
+.NavbarMenu .MenuLink:hover {
+    /* TBD transition colors on hover */
+    background: darkslategrey;
+    color: grey;
+    transition: ease 0.5s;
+}
+
+section {
+    /* TBD remove borders */
+    border: 2px solid orange;
+    position: relative;
+    min-height: 80vh;
+}
+
+footer {
+    border: 2px solid red;
+    background-color: #3a3f44;
+    margin: 1em;
+    padding: 3em;
+
+}
+
+footer p {
+    font-size: 2em;
+    text-shadow: 2px 2px black;
+}
+
+
+/* Styles when JS engages a section TBD */
+.LandingContainer {
+    padding: 1em;
+    text-align: center;
+}
