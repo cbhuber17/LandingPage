@@ -11,9 +11,32 @@ body {
     border: 2px solid white;
 }
 
+/* html body { */
+    /* TBD remove */
+    /* padding-top: 350px; */
+    /* TBD what is ths related to?  To make the header and section 1 borders overlap perfectly? */
+    /* This may not work, can't click header anchors when scrolling down */
+    /* padding-top: 20em; */
+/* } */
+
 header {
     padding: 0em 1em 2em;
     border: 2px solid blue;
+    z-index: 1;
+}
+
+.sticky {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /* padding-top: 100px; */
+}
+
+.sticky a {
+    /* float: left; */
+    display: block;
+    /* padding: 10px; */
 }
 
 /* Typeography styles */
@@ -51,9 +74,8 @@ a:hover {
 /* Layout styles */
 
 main {
-    margin: 0em 1em 10em;
+    margin: 20em 1em 10em;
 }
-
 
 /* TBD this may not be used */
 .main-hero {
@@ -94,6 +116,10 @@ section {
     border: 2px solid orange;
     position: relative;
     min-height: 80vh;
+}
+
+.active {
+    background-color: deeppink;
 }
 
 footer {
