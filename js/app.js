@@ -1,5 +1,5 @@
 
-// TODO: Document function
+// TODO: Document functions
 function addNavBarList(navBarList_, text_, anchor_) {
     const navBarSection = document.createElement('li');
 
@@ -35,31 +35,79 @@ section2anchor.addEventListener('click', function (evt) {
 
 console.log(navBarList);
 
+function isElementInViewport(element) {
+
+    let elementBound = element.getBoundingClientRect();
+
+    return (
+        elementBound.top >= 0 &&
+        elementBound.left >= 0 &&
+        elementBound.bottom <= window.innerHeight &&
+        elementBound.right <= window.innerWidth
+    );
+}
+
+header1 = document.getElementById("section1");
+console.log(header1);
+console.log(isElementInViewport(header1));
+
+document.addEventListener('scroll', function activateSection(evt) {
+
+    const sections = document.querySelectorAll('section');
+    const navMenuItems = document.querySelectorAll('.MenuLink');
+
+    for (let i = 0; i < sections.length; i++) {
+
+        section_h2 = sections[i].childNodes[1].childNodes[1];
+
+        if (isElementInViewport(sections[i])) {
+            // Add active class in section/navbar
+            sections[i].classList.add('active');
+            section_h2.classList.add('active');
+            navMenuItems[i].classList.add('activeNav');
+        }
+        else {
+            // Remove active class in section/navbar
+            sections[i].classList.remove('active');
+            section_h2.classList.remove('active');
+            navMenuItems[i].classList.remove('activeNav');
+        }
+    }
+});
 
 
-// element is the dom element, i.e. what's returned from document.querySelector('selector')
+// console.log(Number(window.getComputedStyle(document.body).getPropertyValue('font-size').match(/\d+/)[0]));
 
-// function isOnScreen(element, buffer) {
-//     //buffer is optional and allows you to return true when  
-//     //the element is going to appear to the screen  
-//     buffer = typeof buffer === 'undefined' ? 0 : buffer;
-//     // Get element's position in the viewport
-//     const bounding = element.getBoundingClientRect();
-//     console.log(bounding);
-//     console.log(window.innerWidth);
-//     console.log(window.innerHeight);
+// Code to hide fixed nav bar
+let timer = null;
 
-//     // Check if element is in the viewport 
-//     if (bounding.top >= buffer &&
-//         bounding.left >= buffer &&
-//         bounding.right <= (window.innerWidth - buffer) &&
-//         bounding.bottom <= (window.innerHeight - buffer)) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
+window.addEventListener('scroll', function hideNavBar(evt) {
 
-// section2 = document.querySelector('header');
-// isSec2OnScreen = isOnScreen(section2, 0);
-// console.log(isSec2OnScreen);
+    if (timer !== null) {
+        clearTimeout(timer);
+        // TBD separation of concerns, JS should not be changing the style!
+        document.querySelector("header").style.top = "0em";
+    }
+
+    window.addEventListener('mousemove', function (evt) {
+
+        // If mouse hovers over header when scrolling (but before timeout), keep it fixed
+        // TBD magic hardcoded numbers, this depends on the header em value set up in CSS
+        if (evt.y < 16 * 20) {
+            clearTimeout(timer);
+            return;
+        }
+
+    });
+
+    // Make sure fixed header stays when at the top of the page
+    if (window.scrollY === 0) {
+        clearTimeout(timer);
+        return;
+    }
+
+    timer = setTimeout(function hideNavBarTimeout() {
+        // TBD magic hardcoded numbers, this depends on the header em value set up in CSS
+        document.querySelector("header").style.top = "-20em";
+    }, 1500);
+});

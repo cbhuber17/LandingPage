@@ -23,6 +23,7 @@ header {
     padding: 0em 1em 2em;
     border: 2px solid blue;
     z-index: 1;
+    transition: top 0.7s;
 }
 
 .sticky {
@@ -111,6 +112,10 @@ main {
     transition: ease 0.5s;
 }
 
+.activeNav {
+    background-color: gold;
+}
+
 section {
     /* TBD remove borders */
     border: 2px solid orange;
@@ -122,12 +127,15 @@ section {
     background-color: deeppink;
 }
 
+.active h2 {
+    text-decoration: underline;
+}
+
 footer {
     border: 2px solid red;
     background-color: #3a3f44;
     margin: 1em;
     padding: 3em;
-
 }
 
 footer p {
