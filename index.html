@@ -7,6 +7,7 @@
     <meta name="author" content="Colin Huber">
     <title>Đà Nẵng Night Tours Landing Page</title>
     <!-- Fonts -->
+    <!-- TBD using these fonts? -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Palanquin+Dark&display=swap" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -20,33 +21,31 @@
         <h1>
             Đà Nẵng Night Tours
         </h1>
-
-        <!-- Navigation starts as empty UL that will be populated with JS -->
+        <!-- JS will populate this nav bar menu -->
         <nav class="NavbarMenu">
             <ul id="NavbarList"></ul>
         </nav>
     </header>
     <main>
-        <!-- TBD "data-nav" can be called something else, perhaps via JS? -->
-        <section id="section1" data-nav="Section 1">
+        <section id="section1">
             <div class="LandingContainer">
                 <h2>Section 1</h2>
                 <p>oh hi 1</p>
             </div>
         </section>
-        <section id="section2" data-nav="Section 2">
+        <section id="section2">
             <div class="LandingContainer">
                 <h2>Section 2</h2>
                 <p>oh hi 2</p>
             </div>
         </section>
-        <section id="section3" data-nav="Section 3">
+        <section id="section3">
             <div class="LandingContainer">
                 <h2>Section 3</h2>
                 <p>oh hi 3</p>
             </div>
         </section>
-        <section id="section4" data-nav="Section 4">
+        <section id="section4">
             <div class="LandingContainer">
                 <h2>Section 4</h2>
                 <p>oh hi 4</p>
@@ -58,6 +57,8 @@
         <p>This landing page was created to complete the requirements for the Udacity Front End Web Developer Nanodegree
             program.</p>
     </footer>
+
+    <button onclick="goToTop()" id="topButton" class="topButtonHide" title="Go to top of page">Top</button>
 
     <script src="js/app.js"></script>
 
