@@ -19,10 +19,10 @@ const navBarList = document.querySelector("#NavbarList");
 
 // Create the sections in the nav bar
 // TBD these names will change to be reflective of the tour landing page
-addNavBarList(navBarList, "Section 1", "#section1");
-addNavBarList(navBarList, "Section 2", "#section2");
-addNavBarList(navBarList, "Section 3", "#section3");
-addNavBarList(navBarList, "Section 4", "#section4");
+addNavBarList(navBarList, "Information", "#section1");
+addNavBarList(navBarList, "Highlights", "#section2");
+addNavBarList(navBarList, "Reviews", "#section3");
+addNavBarList(navBarList, "Contact", "#section4");
 
 // Smooth scrolling to a section
 section2 = document.querySelector("#section2");
