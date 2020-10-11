@@ -13,19 +13,17 @@ body {
     border: 2px solid white;
 }
 
-header {
-    border: 2px solid blue;
-    z-index: 1;
-    transition: top 0.7s;
-}
-
 .sticky {
     background-image: url('../img/stars3.png');
     background-size: cover;
     overflow: hidden;
     position: fixed;
-    top: 0;
     width: 100%;
+
+    border: 2px solid blue;
+    z-index: 1;
+    transition: top 0.7s;
+    top: 0px;
 }
 
 .sticky a {
@@ -71,7 +69,6 @@ main {
 .NavbarMenu li {
     display: inline-block;
     padding: 1em;
-    /* border: 2px solid purple; */
 }
 
 .NavbarMenu .MenuLink {
@@ -256,6 +253,7 @@ footer p {
 
 
 /* Form styles */
+/* TBD form is horizontally huge on PC web browser - make smaller horizontally */
 input[type=text], select, textarea {
     width: 100%;
     padding: 1em;

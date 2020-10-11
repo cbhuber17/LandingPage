@@ -1,40 +1,30 @@
 
-// TODO: Document functions
-function addNavBarList(navBarList_, text_, anchor_) {
-    const navBarSection = document.createElement("li");
+// TBD: Document functions
+/*
+ * Create the navigation bar dynamically - builds menu items that has anchors to sections on the page 
+ * @param  {HTMLElement} navBarList The navigation bar list element (from ID)
+ * @param  {String} text Text to describe the menu item to create (and be linked by the anchor)
+ * @param  {String} anchor The attribute of href in the anchor (i.e. the link to the section on the page)
+ */
+function addNavBarList(navBarList, text, anchor) {
 
+    const navBarSection = document.createElement("li");
     const anchorSection = document.createElement("a");
-    anchorSection.setAttribute("href", anchor_);
 
     navBarSection.className = "MenuLink";
-    anchorSection.textContent = text_;
+
+    anchorSection.setAttribute("href", anchor);
+    anchorSection.textContent = text;
 
     navBarSection.appendChild(anchorSection);
-
-    navBarList_.appendChild(navBarSection);
+    navBarList.appendChild(navBarSection);
 }
 
-// Grab the nav bar list ID
-const navBarList = document.querySelector("#NavbarList");
-
-// Create the sections in the nav bar
-// TBD these names will change to be reflective of the tour landing page
-addNavBarList(navBarList, "Information", "#section1");
-addNavBarList(navBarList, "Highlights", "#section2");
-addNavBarList(navBarList, "Reviews", "#section3");
-addNavBarList(navBarList, "Contact", "#section4");
-
-// Smooth scrolling to a section
-section2 = document.querySelector("#section2");
-section2anchor = document.querySelector('a[href ="#section2"]');
-
-section2anchor.addEventListener("click", function (evt) {
-    evt.preventDefault();
-    section2.scrollIntoView({ behavior: "smooth" });
-})
-
-console.log(navBarList);
-
+/*
+ * Check to see if an element is in the current view port
+ * @param  {HTMLElement} navBarList The navigation bar list element (from ID)
+ * @return {Boolean} true if the element is in the current view port, otherwise false
+ */
 function isElementInViewport(element) {
 
     let elementBound = element.getBoundingClientRect();
@@ -47,81 +37,11 @@ function isElementInViewport(element) {
     );
 }
 
-header1 = document.getElementById("section1");
-console.log(header1);
-console.log(isElementInViewport(header1));
+/*
+ * Show the "Top" button when passing the fold of the page
+ */
+function scrollShowTopButton() {
 
-document.addEventListener("scroll", function activateSection(evt) {
-
-    const sections = document.querySelectorAll("section");
-    const navMenuItems = document.querySelectorAll(".MenuLink");
-
-    for (let i = 0; i < sections.length; i++) {
-
-        section_h2 = sections[i].childNodes[1].childNodes[1];
-
-        if (isElementInViewport(sections[i])) {
-            // Add active class in section/navbar
-            sections[i].classList.add("active");
-            section_h2.classList.add("active");
-            navMenuItems[i].classList.add("activeNav");
-        }
-        else {
-            // Remove active class in section/navbar
-            sections[i].classList.remove("active");
-            section_h2.classList.remove("active");
-            navMenuItems[i].classList.remove("activeNav");
-        }
-    }
-});
-
-// Code to hide fixed nav bar
-let timer = null;
-
-window.addEventListener("scroll", function hideNavBar(evt) {
-
-    if (timer !== null) {
-        clearTimeout(timer);
-        // TBD separation of concerns, JS should not be changing the style!
-        document.querySelector("header").style.top = "0em";
-    }
-
-    // TBD does this mousemove eventlistener stop when this "scroll event listener" goes out of scope?
-    // TBD may need to be put in a separate function and use removeEventListener to clean up.
-    // TBD this function may need to be added outside of scroll event listener such that if the mouse is in the header, stay fixed.  Otherwise disappear.
-    //              This is when scrolling, then going the mouse into the header before timeout, then coming out of the header, the header stays fixed.  The header should disappear when coming out of the header.
-    window.addEventListener("mousemove", function mouseYinNavBar(evt) {
-
-        // If mouse hovers over header when scrolling (but before timeout), keep it fixed
-        // TBD magic hardcoded numbers, this depends on the header em value set up in CSS
-        if (evt.y < 16 * 20) {
-            clearTimeout(timer);
-            return;
-        }
-
-    });
-
-    // Make sure fixed header stays when at the top of the page
-    if (window.scrollY === 0) {
-        clearTimeout(timer);
-        return;
-    }
-
-    timer = setTimeout(function hideNavBarTimeout() {
-        // TBD magic hardcoded numbers, this depends on the header em value set up in CSS
-        // TBD separation of concerns
-        document.querySelector("header").style.top = "-20em";
-    }, 1500);
-});
-
-
-// Code for button to go to top of page
-topButton = document.getElementById("topButton");
-
-// Show the button when scrolling
-window.onscroll = function () { scrollFunction() };
-
-function scrollFunction() {
     if (document.body.scrollTop > window.screen.height || document.documentElement.scrollTop > window.screen.height) {
         topButton.classList.remove("topButtonHide");
         topButton.classList.add("topButton");
@@ -131,7 +51,133 @@ function scrollFunction() {
     }
 }
 
-// When the user clicks on the button, scroll to the top of the document
+/*
+ *  When the user clicks on the top button, scroll to the top of the document
+ */
 function goToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+// TBD have main() function?
+// TBD braek down code further based on Mosh's good coding practices
+
+// Get all tags that use <section>, then the ID can be extracted
+const allSections = document.body.getElementsByTagName("section");
+
+// Grab the nav bar list element
+const navBarList = document.querySelector("#NavbarList");
+
+// Array to hold section elements for event listener smooth scrolling
+const sectionElements = [];
+
+// Iterate over each section to:
+// Populate the nav bar with each menu item
+// Create an anchor link for each menu item
+// Allow smooth scrolling for each menu item
+for (let i = 0; i < allSections.length; i++) {
+
+    // Get the section id and create the link to it
+    sectionIDanchorlink = '#' + allSections[i].id;
+
+    // Create the text for each navigation bar menu item
+    let menuText = '';
+
+    switch (i) {
+        case 0:
+            menuText = "Information";
+            break;
+        case 1:
+            menuText = "Highlights";
+            break;
+        case 2:
+            menuText = "Reviews";
+            break;
+        case 3:
+            menuText = "Contact";
+            break;
+
+        default:
+            menuText = '';
+            break;
+    }
+
+    addNavBarList(navBarList, menuText, sectionIDanchorlink);
+
+    // Create smooth scrolling experience to the section when clicking on each menu item in the nav bar
+    sectionElements.push(document.querySelector(sectionIDanchorlink));
+    anchorQueryText = `a[href ="${sectionIDanchorlink}"]`;
+    sectionAnchor = document.querySelector(anchorQueryText);
+
+    sectionAnchor.addEventListener("click", function (evt) {
+        evt.preventDefault();
+        sectionElements[i].scrollIntoView({ behavior: "smooth" });
+    });
+
+}
+
+// Highlight a particular section when it is in the current view port
+// Also highlight the section in the navbar when in the current view port
+document.addEventListener("scroll", function activateSection(evt) {
+
+    const sections = document.querySelectorAll("section");
+    const navMenuItems = document.querySelectorAll(".MenuLink");
+
+    for (let i = 0; i < sections.length; i++) {
+
+        section_h2 = sections[i].childNodes[1].childNodes[1];
+
+        // Add/remove active class in section/navbar
+        if (isElementInViewport(sections[i])) {
+            sections[i].classList.add("active");
+            section_h2.classList.add("active");
+            navMenuItems[i].classList.add("activeNav");
+        }
+        else {
+            sections[i].classList.remove("active");
+            section_h2.classList.remove("active");
+            navMenuItems[i].classList.remove("activeNav");
+        }
+    }
+});
+
+// Code to hide fixed nav bar when scrolling
+let timer = null;
+
+// Get the fixed header height so we know when to keep it fixed if the mouse y-coordinate comes in the header region
+const fixedHeader = document.querySelector('header');
+const headerHeight = fixedHeader.offsetHeight;
+
+// Hide the navigation bar upon scrolling
+window.addEventListener("scroll", function hideNavBar(hideEvt) {
+
+    // Keep the header when scrolling
+    if (timer !== null) {
+        clearTimeout(timer);
+        // TBD separation of concerns, JS should not be changing the style!
+        fixedHeader.style.top = "0px";
+    }
+
+    // If mouse hovers over header when scrolling (but before timeout), keep it fixed
+    window.addEventListener("mousemove", function mouseYinNavBar(mouseEvt) {
+
+        if (mouseEvt.y < headerHeight) {
+            clearTimeout(timer);
+            return;
+        }
+    });
+
+    // Make sure fixed header stays when viewing at the top of the page
+    if (window.scrollY === 0) {
+        clearTimeout(timer);
+        return;
+    }
+
+    // Remove the header when scrolling stops
+    timer = setTimeout(function hideNavBarTimeout() {
+        // TBD separation of concerns
+        fixedHeader.style.top = `-${headerHeight}px`;
+    }, 1000);
+});
+
+// Show the "scroll to top" button when scrolling past the fold of the page
+window.onscroll = function () { scrollShowTopButton() };
