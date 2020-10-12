@@ -59,7 +59,7 @@ function goToTop() {
 }
 
 // TBD have main() function?
-// TBD braek down code further based on Mosh's good coding practices
+// TBD break down code further based on Mosh's good coding practices
 
 // Get all tags that use <section>, then the ID can be extracted
 const allSections = document.body.getElementsByTagName("section");
@@ -78,6 +78,7 @@ for (let i = 0; i < allSections.length; i++) {
 
     // Get the section id and create the link to it
     sectionIDanchorlink = '#' + allSections[i].id;
+    sectionElements.push(document.querySelector(sectionIDanchorlink));
 
     // Create the text for each navigation bar menu item
     let menuText = '';
@@ -103,12 +104,12 @@ for (let i = 0; i < allSections.length; i++) {
 
     addNavBarList(navBarList, menuText, sectionIDanchorlink);
 
-    // Create smooth scrolling experience to the section when clicking on each menu item in the nav bar
-    sectionElements.push(document.querySelector(sectionIDanchorlink));
+    // Get section anchor
     anchorQueryText = `a[href ="${sectionIDanchorlink}"]`;
     sectionAnchor = document.querySelector(anchorQueryText);
 
-    sectionAnchor.addEventListener("click", function (evt) {
+    // Create smooth scrolling experience to the section when clicking on each menu item in the nav bar
+    sectionAnchor.addEventListener("click", function smoothScrollAnchor(evt) {
         evt.preventDefault();
         sectionElements[i].scrollIntoView({ behavior: "smooth" });
     });
@@ -124,7 +125,7 @@ document.addEventListener("scroll", function activateSection(evt) {
 
     for (let i = 0; i < sections.length; i++) {
 
-        section_h2 = sections[i].childNodes[1].childNodes[1];
+        section_h2 = sections[i].childNodes[1];
 
         // Add/remove active class in section/navbar
         if (isElementInViewport(sections[i])) {
@@ -169,6 +170,7 @@ window.addEventListener("scroll", function hideNavBar(hideEvt) {
     // Make sure fixed header stays when viewing at the top of the page
     if (window.scrollY === 0) {
         clearTimeout(timer);
+        fixedHeader.style.top = "10px";
         return;
     }
 

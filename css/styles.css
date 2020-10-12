@@ -7,23 +7,29 @@ html {
 }
 
 body {
-    background-color:#3a3f44;
-    background: #3a3f44;
-    background: linear-gradient(to bottom right, black, #3a3f44);
+    background: linear-gradient(to bottom right, black, grey);
     border: 2px solid white;
+    outline-offset: 0px;
 }
 
 .sticky {
+    /* TBD background image overlaps border */
     background-image: url('../img/stars3.png');
     background-size: cover;
     overflow: hidden;
     position: fixed;
-    width: 100%;
-
-    border: 2px solid blue;
+    /* width: 100%; */
     z-index: 1;
     transition: top 0.7s;
-    top: 0px;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+}
+
+@media(max-width: 600px) {
+    .sticky {
+        position: static;
+    }
 }
 
 .sticky a {
@@ -48,7 +54,6 @@ p {
     margin: 10px;
     color: beige;
     font-family: 'Palanquin Dark';
-
 }
 
 a, a:visited, a:active {
@@ -56,9 +61,8 @@ a, a:visited, a:active {
 }
 
 /* Layout styles */
-
 main {
-    margin: 9em 0em 0em;
+    margin: 100px 0px 0px;
 }
 
 .NavbarMenu ul {
@@ -68,7 +72,7 @@ main {
 
 .NavbarMenu li {
     display: inline-block;
-    padding: 1em;
+    padding: 0em 1em 0em;
 }
 
 .NavbarMenu .MenuLink {
@@ -78,26 +82,29 @@ main {
 }
 
 .NavbarMenu .MenuLink:hover {
-    /* TBD transition colors on hover */
-    background: darkslategrey;
-    color: grey;
+    color: orange;
     transition: ease 0.5s;
 }
 
 .activeNav {
-    background-color: gold;
+    background-color: navy;
+    transition: ease 0.3s;
 }
 
 section {
-    /* TBD remove borders */
-    border: 2px solid orange;
     position: relative;
     min-height: 80vh;
+    width: 100%;
+    padding: 1em 0em;   
+    text-align: center;
+    list-style-position: inside;
 }
 
 .mainHero {
     background-image: url('../img/dragon.jpg');
     background-size: cover;
+    background-clip: content-box;
+    margin: 0px;
 }
 
 .mainHeroListContainer {
@@ -105,10 +112,6 @@ section {
     grid-template-rows: 130px;
     width: 450px;
     margin: auto;
-    /* padding-inline-start: 0px; */
-    /* grid-template-columns: 450px; */
-    /* border: 2px solid skyblue; */
-    /* justify-content: center; */
 }
 
 .mainHeroList {
@@ -122,11 +125,11 @@ section {
 }
 
 .mainHeroList ul{
-    padding: 0;
+    padding: 0px;
 }
 
 .section2 li {
-    padding: 0.5em;
+    padding: 0.5em 0em;
 }
 
 /* TBD Media query here for small viewport! */
@@ -134,7 +137,6 @@ section {
     display: grid;
     grid-template-rows: 300px;
     grid-template-columns: repeat(2, 300px);
-    border: 2px solid green;
     justify-content: space-evenly;
 }
 
@@ -149,11 +151,10 @@ section {
 }
 
 .reviewContainer {
-    padding: 30px;
+    padding: 1em;
     display: grid;
     grid-template-rows: repeat(3, 120px);
     grid-template-columns: 100px 500px;
-    border: 2px solid brown;
     justify-content: center;
 }
 
@@ -162,24 +163,12 @@ section {
 
 .avatar {
     display: flex;
-    /* width: 100px; */
-    /* height: 100px; */
     align-items: center;
-    /* margin: auto; */
-    /* grid-gap: 10px; */
-    /* border: 2px solid salmon; */
-    /* padding: 15px; */
 }
 
 .reviewText {
     display: flex;
-    /* width: 400px; */
-    /* height: 100px; */
-    /* align-items: center; */
-    /* margin: auto; */
-    /* grid-gap: 10px; */
-    /* border: 2px solid greenyellow; */
-    padding: 15px;
+    padding: 1em;
 }
 
 .reviewText q {
@@ -198,15 +187,47 @@ section {
 }
 
 .active {
-    background-color: deeppink;
+    background-color: black;
 }
 
 .active h2 {
     text-decoration: underline;
 }
 
+/* Form styles */
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 1em;
+    border: 2px solid silver;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+  
+  input[type=submit] {
+    background-color: grey;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: skyblue;
+    color: black;
+  }
+  
+  .formContainer {
+    width: 50%;
+    border-radius: 5px;
+    background-color: navy;
+    padding: 20px;
+    margin: auto;
+  }
+
 footer {
-    border: 2px solid red;
     background-color: #3a3f44;
     margin: 1em;
     padding: 3em;
@@ -227,7 +248,6 @@ footer p {
     bottom: 20px;
     right: 30px;
     z-index: 5;
-    border: none;
     outline: none;
     background-color: silver;
     color: black; 
@@ -240,46 +260,3 @@ footer p {
   #topButton:hover {
     background-color: #555;
 }
-
-.LandingContainer {
-    padding: 1em;
-    text-align: center;
-    list-style-position: inside;
-}
-
-
-
-
-
-
-/* Form styles */
-/* TBD form is horizontally huge on PC web browser - make smaller horizontally */
-input[type=text], select, textarea {
-    width: 100%;
-    padding: 1em;
-    border: 2px solid silver;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 0.5em;
-    margin-bottom: 1em; 
-    /* resize: vertical; */
-  }
-  
-  input[type=submit] {
-    background-color: grey;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  input[type=submit]:hover {
-    background-color: navy;
-  }
-  
-  .formContainer {
-    border-radius: 5px;
-    background-color: black;
-    padding: 20px;
-  }
