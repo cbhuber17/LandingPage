@@ -1,5 +1,3 @@
-/* TBD auto-resize images from first project */
-
 /* Base styles */
 html {
     font-family: Raleway;
@@ -13,12 +11,10 @@ body {
 }
 
 .sticky {
-    /* TBD background image overlaps border */
     background-image: url('../img/stars3.png');
     background-size: cover;
     overflow: hidden;
     position: fixed;
-    /* width: 100%; */
     z-index: 1;
     transition: top 0.7s;
     top: 10px;
@@ -26,19 +22,17 @@ body {
     right: 10px;
 }
 
-@media(max-width: 600px) {
+@media(max-width: 425px) {
     .sticky {
-        position: static;
+        font-size: 12px;
+        height: 116px;
     }
-}
-
-.sticky a {
-    display: block;
 }
 
 /* Typeography styles */
 h1 {
     text-align: center;
+    padding: 0em 1em 0em;
     text-shadow: 3px 3px 5px silver;
     font-size: 2em;
 }
@@ -93,7 +87,7 @@ main {
 
 section {
     position: relative;
-    min-height: 80vh;
+    min-height: 60vh;
     width: 100%;
     padding: 1em 0em;   
     text-align: center;
@@ -107,11 +101,21 @@ section {
     margin: 0px;
 }
 
+.mainHero p {
+    padding-bottom: 20vh;
+}
+
 .mainHeroListContainer {
     display: grid;
     grid-template-rows: 130px;
     width: 450px;
     margin: auto;
+}
+
+@media(max-width: 475px) {
+    .mainHeroListContainer {
+        width: 95%;
+    }
 }
 
 .mainHeroList {
@@ -124,20 +128,35 @@ section {
     font-size: 16px;
 }
 
+@media(max-width: 475px) {
+    .mainHeroList {
+        font-size: 14px;
+    }
+}
+
 .mainHeroList ul{
     padding: 0px;
 }
 
-.section2 li {
-    padding: 0.5em 0em;
-}
-
-/* TBD Media query here for small viewport! */
 .section2ImgContainer {
     display: grid;
     grid-template-rows: 300px;
     grid-template-columns: repeat(2, 300px);
     justify-content: space-evenly;
+}
+
+@media(max-width: 650px) {
+    .section2ImgContainer {
+        grid-template-rows: 200px;
+        grid-template-columns: repeat(2, 200px);
+    }
+}
+
+@media(max-width: 445px) {
+    .section2ImgContainer {
+        grid-template-rows: 150px;
+        grid-template-columns: repeat(2, 150px);
+    }
 }
 
 #section2Img1 {
@@ -158,8 +177,17 @@ section {
     justify-content: center;
 }
 
-/* TBD should use FR units here (share the available remaining space) */
-/* TBD review section needs media queries */
+@media(max-width: 650px) {
+    .reviewContainer {
+        grid-template-columns: 100px 300px;
+    }
+}
+
+@media(max-width: 450px) {
+    .reviewContainer {
+        grid-template-columns: 100px 225px;
+    }
+}
 
 .avatar {
     display: flex;
